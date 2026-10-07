@@ -1,0 +1,98 @@
+{
+  "summary": {
+    "n": 7,
+    "accuracy": 1.0,
+    "task_completion": 1.0,
+    "tools_correct": 1.0,
+    "hallucination_rate": 0.0,
+    "avg_latency_s": 0.002,
+    "total_tokens": 10088,
+    "total_est_cost_usd": 0.0
+  },
+  "results": [
+    {
+      "id": "t1_tool_basic",
+      "category": "tool_use",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.0,
+      "tokens": 1196,
+      "est_cost_usd": 0.0,
+      "final_answer": "15% of 240 is 36."
+    },
+    {
+      "id": "t2_tool_multistep",
+      "category": "tool_use",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.001,
+      "tokens": 1937,
+      "est_cost_usd": 0.0,
+      "final_answer": "10% of the 1200 dollar project budget is 120."
+    },
+    {
+      "id": "t3_rag_grounded",
+      "category": "rag",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.006,
+      "tokens": 591,
+      "est_cost_usd": 0.0,
+      "final_answer": "The agent fingerprints each tool call using the tool name plus sorted arguments, and keeps the recent fingerprints in memory [1]. If the exact same call repeats beyond the max_repeats limit, the agent stops gracefully with a loop-detected message instead of continuing [1]."
+    },
+    {
+      "id": "t4_rag_unknown",
+      "category": "rag",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.005,
+      "tokens": 535,
+      "est_cost_usd": 0.0,
+      "final_answer": "The provided sources do not contain the answer to this question."
+    },
+    {
+      "id": "t5_loop_detection",
+      "category": "robustness",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.0,
+      "tokens": 2673,
+      "est_cost_usd": 0.0,
+      "final_answer": ""
+    },
+    {
+      "id": "t6_bad_args_recovery",
+      "category": "robustness",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.0,
+      "tokens": 1904,
+      "est_cost_usd": 0.0,
+      "final_answer": "2+2 is 4."
+    },
+    {
+      "id": "t7_unknown_tool",
+      "category": "robustness",
+      "accuracy": true,
+      "task_completion": true,
+      "tools_correct": true,
+      "hallucination_rate": 0.0,
+      "latency_s": 0.0,
+      "tokens": 1252,
+      "est_cost_usd": 0.0,
+      "final_answer": "I don't have a magic_oracle tool; 2+2 is 4."
+    }
+  ]
+}

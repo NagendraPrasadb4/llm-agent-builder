@@ -1,0 +1,110 @@
+[
+  {
+    "category": "tool_use",
+    "expected_final_contains": [
+      "36"
+    ],
+    "expected_success": true,
+    "expected_tools": [
+      "calculator"
+    ],
+    "id": "t1_tool_basic",
+    "script": [
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"15 * 240 / 100\"}}",
+      "{\"final\": \"15% of 240 is 36.\"}"
+    ],
+    "task": "What is 15% of 240?"
+  },
+  {
+    "category": "tool_use",
+    "expected_final_contains": [
+      "120"
+    ],
+    "expected_success": true,
+    "expected_tools": [
+      "file_reader",
+      "calculator"
+    ],
+    "id": "t2_tool_multistep",
+    "script": [
+      "{\"tool\": \"file_reader\", \"args\": {\"path\": \"data/sample_docs/numbers.txt\"}}",
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"1200 * 0.10\"}}",
+      "{\"final\": \"10% of the 1200 dollar project budget is 120.\"}"
+    ],
+    "task": "Read data/sample_docs/numbers.txt and tell me what 10% of the project budget is."
+  },
+  {
+    "category": "rag",
+    "expected_citation_contains": "agent_architecture",
+    "expected_final_contains": [
+      "fingerprint",
+      "loop"
+    ],
+    "expected_success": true,
+    "id": "t3_rag_grounded",
+    "rag_question": "How does the agent detect repeated tool calls?",
+    "script": [
+      "The agent fingerprints each tool call using the tool name plus sorted arguments, and keeps the recent fingerprints in memory [1]. If the exact same call repeats beyond the max_repeats limit, the agent stops gracefully with a loop-detected message instead of continuing [1]."
+    ],
+    "task": "How does the agent detect repeated tool calls?"
+  },
+  {
+    "category": "rag",
+    "expected_final_contains": [
+      "do not contain"
+    ],
+    "expected_success": true,
+    "id": "t4_rag_unknown",
+    "rag_question": "What is the capital of France?",
+    "script": [
+      "The provided sources do not contain the answer to this question."
+    ],
+    "task": "What is the capital of France?"
+  },
+  {
+    "category": "robustness",
+    "expected_error_contains": "loop",
+    "expected_success": false,
+    "expected_tools": [
+      "calculator"
+    ],
+    "id": "t5_loop_detection",
+    "script": [
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"2+2\"}}",
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"2+2\"}}",
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"2+2\"}}",
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"2+2\"}}"
+    ],
+    "task": "Use the calculator to compute 2+2, but keep calling it the same way."
+  },
+  {
+    "category": "robustness",
+    "expected_final_contains": [
+      "4"
+    ],
+    "expected_success": true,
+    "expected_tools": [
+      "calculator"
+    ],
+    "id": "t6_bad_args_recovery",
+    "script": [
+      "{\"tool\": \"calculator\", \"args\": {}}",
+      "{\"tool\": \"calculator\", \"args\": {\"expression\": \"2+2\"}}",
+      "{\"final\": \"2+2 is 4.\"}"
+    ],
+    "task": "What is 2+2?"
+  },
+  {
+    "category": "robustness",
+    "expected_final_contains": [
+      "4"
+    ],
+    "expected_success": true,
+    "id": "t7_unknown_tool",
+    "script": [
+      "{\"tool\": \"magic_oracle\", \"args\": {\"question\": \"2+2\"}}",
+      "{\"final\": \"I don't have a magic_oracle tool; 2+2 is 4.\"}"
+    ],
+    "task": "What is 2+2?"
+  }
+]

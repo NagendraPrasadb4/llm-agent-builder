@@ -1,0 +1,11 @@
+# Core runtime (only hard dependency)
+requests>=2.31.0
+
+# Test runner
+pytest>=8.0.0
+
+# --- Optional, uncomment as needed ---
+# Better embeddings quality for RAG (default uses a lightweight local baseline):
+# sentence-transformers>=2.2.0
+# Accurate token counting (default uses a chars/4 heuristic):
+# tiktoken>=0.5.0
